@@ -1,34 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <unistd.h>
 /**
  * gcc -Wall -Werror -pedantic prompt.c -o prompt && ./prompt
  * source: https://c-for-dummies.com/blog/?p=1112
  */
 
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-
 int main()
 {
-    char *buffer;
+    char *buffer = NULL;
     size_t bufsize = 32;
     size_t characters;
+    char *dollar = "$ ";
 
-    buffer = (char *)malloc(bufsize * sizeof(char));
-    if( buffer == NULL)
+    write(1, dollar, 2);
+    while((characters = getline(&buffer, &bufsize, stdin)) != EOF)
     {
-        perror("Unable to allocate buffer");
-        exit(1);
+        write(1, buffer, characters);
+        write(1, dollar, 2);
     }
-
-    printf("$ ");
-    characters = getline(&buffer,&bufsize,stdin);
-    printf("%zu characters were read.\n",characters);
-    printf("You typed: '%s'\n",buffer);
-
+    free(buffer);
     return(0);
 }
