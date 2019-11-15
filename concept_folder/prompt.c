@@ -8,6 +8,7 @@
 int main()
 {
     char *buffer = NULL;
+    char **commands;
     size_t bufsize = 32;
     size_t characters;
     char *dollar = "$ ";
@@ -15,7 +16,7 @@ int main()
     write(1, dollar, 2);
     while((characters = getline(&buffer, &bufsize, stdin)) != EOF)
     {
-        write(1, buffer, characters);
+        commands = array_to_strok(buffer);
         write(1, dollar, 2);
     }
     free(buffer);

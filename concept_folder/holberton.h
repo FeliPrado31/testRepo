@@ -6,4 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 
+
+char **array_to_strok(char *str);
+
 #endif
