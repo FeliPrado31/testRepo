@@ -1,15 +1,17 @@
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 /**
- * main - fork example
- * gcc -Wall -Wextra -Werror -pedantic fork.c -o fork && ./fork
+ * main - fork & wait example
+ * gcc -Wall -Wextra -Werror -pedantic wait.c -o wait && ./wait
  * Return: Always 0.
  */
 int main(void)
 {
-    pid_t my_pid;
     pid_t child_pid;
+    int status;
 
     child_pid = fork();
     if (child_pid == -1)
@@ -17,15 +19,15 @@ int main(void)
         perror("Error:");
         return (1);
     }
-    my_pid = getpid();
-    printf("My pid is %u\n", my_pid);
     if (child_pid == 0)
     {
-        printf("(%u) Nooooooooo!\n", my_pid);
+        printf("Wait for me, wait for me\n");
+        sleep(3);
     }
     else
     {
-        printf("(%u) %u, I am your father\n", my_pid, child_pid);
+        wait(&status);
+        printf("Oh, it's all better now\n");
     }
     return (0);
 }
