@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "holberton.h"
+
 /**
  * gcc -Wall -Werror -pedantic prompt.c -o prompt && ./prompt
  * source: https://c-for-dummies.com/blog/?p=1112
