@@ -1,9 +1,10 @@
 #include "holberton.h"
+#include <string.h>
 
 /**
  *
  */
-unsigned int *find_command(char *str)
+unsigned int find_command_lenght(char *str)
 {
     unsigned int commands, flag, i;
     commands = 0;
@@ -24,7 +25,14 @@ unsigned int *find_command(char *str)
 }
 char **array_to_strok(char *str)
 {
-    char *string;
-    string = strtok(str, " ");
+    unsigned int lenght = 0, i = 0;
+    char *token;
+    lenght = find_command_lenght(str);
+    token = strtok(str, " ");
+    while (!token)
+    {
+        token = strtok(NULL, " ");
+        ++i;
+    }
     return (0);
 }
